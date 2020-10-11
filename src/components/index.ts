@@ -1,4 +1,4 @@
-import genderRoutes from './gender/routes';
+import forwardAuthRoutes from './forward-auth/routes';
 import healthRoutes from './healthcheck/routes';
 
-export default [...genderRoutes, ...healthRoutes];
+export default [...forwardAuthRoutes, ...healthRoutes];
