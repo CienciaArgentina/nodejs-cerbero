@@ -10,7 +10,7 @@ export default [
     handler: [
       async ({ body }: Request, res: Response): Promise<void> => {
         const result = verifyToken(body);
-        res.status(HttpStatusCode.Ok).send(result);
+        res.status(HttpStatusCode.Ok).send();
       },
     ],
   },
