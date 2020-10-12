@@ -1,9 +1,9 @@
-import { Roles } from "./Roles";
+import { Roles } from './Roles';
 
 export interface JwtToken {
-	auth_id?: string;
-	username?: string;
-	email?: string;
-	expires_at?: number;
-	roles?: Roles[];
+  auth_id?: string;
+  username?: string;
+  email?: string;
+  expires_at?: number;
+  roles?: Roles[];
 }

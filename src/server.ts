@@ -1,4 +1,4 @@
-import { logger,startServer } from 'ciencia-argentina-backend-commons';
+import { logger, startServer } from 'ciencia-argentina-backend-commons';
 import routes from './components';
 
 process.on('uncaughtException', (e) => {
@@ -10,4 +10,4 @@ process.on('unhandledRejection', (e) => {
   process.exit(1);
 });
 
-startServer(+(process.env.HTTP_PORT || 8080),routes);
+startServer(+(process.env.HTTP_PORT || 8080), routes);

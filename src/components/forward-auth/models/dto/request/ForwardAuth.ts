@@ -1,4 +1,4 @@
 export interface ForwardAuth {
-    jwt: string;
-    required_claim: string;
+  jwt: string;
+  required_claim: string;
 }
