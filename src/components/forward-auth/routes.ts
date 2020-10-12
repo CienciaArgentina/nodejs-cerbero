@@ -4,10 +4,11 @@ import { HttpStatusCode } from '../../commons/constants';
 import {
 	verifyToken
 } from './service'
+import { Paths } from './utils/constants';
 
 export default [
   {
-    path: '/forward-auth',
+    path: Paths.ForwardAuth,
     method: 'post',
     handler: [
 	  async ({body}: Request, res: Response): Promise<void> => {
