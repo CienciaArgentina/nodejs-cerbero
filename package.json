@@ -1,5 +1,5 @@
 {
-  "name": "gender-api",
+  "name": "nodejs-cerbero-api",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -31,16 +31,13 @@
     "clearMocks": true
   },
   "dependencies": {
-    "ciencia-argentina-backend-commons": "^1.3.3",
+    "ciencia-argentina-backend-commons": "^1.3.6",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-winston": "^4.0.3",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.1",
-    "mysql": "^2.18.1",
-    "objection": "^2.2.0",
     "uuid": "^7.0.3",
     "winston": "^3.2.1"
   },

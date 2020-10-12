@@ -11,16 +11,8 @@ export default [
     method: 'post',
     handler: [
 	  async ({body}: Request, res: Response): Promise<void> => {
-		/**
-		 * Validar JWT firma
-		 * Validar expirado
-		 * Validar claims
-		 */                                                                                                                                                                                        
-		const token = body.jwt
-		const required_claim = body.required_claim
-		const result = verifyToken(token, required_claim)
-
-        res.status(HttpStatusCode.Ok).send();
+		const result = verifyToken(body);
+        res.status(HttpStatusCode.Ok).send(result);
       }
     ]
   },

@@ -1,8 +1,8 @@
 export enum ErrorCode {
-  NotFound = 'gender.not.found',
-  BadRequest = 'gender.bad.request',
-  InternalServerError = 'gender.internal.server.error',
-  Unauthorized = 'gender.unauthorized',
+  NotFound = 'cerberos.not.found',
+  BadRequest = 'cerberos.bad.request',
+  InternalServerError = 'cerberos.internal.server.error',
+  Unauthorized = 'cerberos.unauthorized',
 }
 
 export enum ErrorDescription {
