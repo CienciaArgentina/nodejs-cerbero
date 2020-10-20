@@ -10,20 +10,26 @@ const includeClaims = (roles: Roles[], required_claim: string): boolean => {
 };
 
 export const verifyToken = (forwardAuthRequest: ForwardAuth): JwtToken => {
-  const { jwt, required_claim } = forwardAuthRequest;
+  try {
+    const { jwt, required_claim } = forwardAuthRequest;
 
-  const errors = validateForwardAuthScheme(forwardAuthRequest);
+    const errors = validateForwardAuthScheme(forwardAuthRequest);
 
-  if (errors) throw new HttpValidationError(errors);
-  const decoded: JwtToken | string = verify(jwt, process.env.JWT_SIGNATURE || '');
+    if (errors) throw new HttpValidationError(errors);
+    const decoded: JwtToken | string = verify(jwt, process.env.JWT_SIGNATURE || '');
 
-  //https://tools.ietf.org/html/rfc6750
-  if (!decoded || typeof decoded === 'string' || !decoded.expires_at || !decoded.roles)
-    throw new HTTP401Error('invalid_token');
+    //https://tools.ietf.org/html/rfc6750
+    if (!decoded || typeof decoded === 'string' || !decoded.expires_at || !decoded.roles)
+      throw new HTTP401Error('invalid_token');
 
-  if (decoded.expires_at < new Date().getTime() / 1000) throw new HTTP401Error('token expired');
+    if (decoded.expires_at < new Date().getTime() / 1000) throw new HTTP401Error('token expired');
 
-  if (!includeClaims(decoded.roles, required_claim)) throw new HTTP401Error('not included claims');
+    if (!includeClaims(decoded.roles, required_claim)) throw new HTTP401Error('not included claims');
 
-  return decoded;
+    return decoded;
+  } catch (error) {
+    //TODO: Hardcode and catch
+    if (error.name === 'JsonWebTokenError') throw new HTTP401Error('invalid_token');
+    throw new Error(error);
+  }
 };
