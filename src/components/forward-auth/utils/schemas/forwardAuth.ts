@@ -6,10 +6,10 @@ export const forwardAuth: JSONSchema7 = {
     jwt: {
       type: ['string'],
     },
-    expired_at: {
-      type: ['number'],
+    required_claim: {
+      type: ['string'],
     },
   },
-  required: ['jwt', 'expired_at'],
+  required: ['jwt', 'required_claim'],
   additionalProperties: false,
 };
