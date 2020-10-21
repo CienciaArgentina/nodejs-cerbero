@@ -28,6 +28,7 @@ export const verifyToken = (forwardAuthRequest: ForwardAuth): JwtToken => {
 
     return decoded;
   } catch (error) {
+    console.log('error name', error.name);
     //TODO: Hardcode and catch
     if (error.name === 'JsonWebTokenError') throw new HTTP401Error('invalid_token');
     throw new Error(error);
