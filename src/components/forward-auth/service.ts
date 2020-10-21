@@ -10,12 +10,13 @@ const includeClaims = (roles: Roles[], required_claim: string): boolean => {
 };
 
 export const verifyToken = (forwardAuthRequest: ForwardAuth): JwtToken => {
+  const errors = validateForwardAuthScheme(forwardAuthRequest);
+
+  if (errors) throw new HttpValidationError(errors);
+
   try {
     const { jwt, required_claim } = forwardAuthRequest;
 
-    const errors = validateForwardAuthScheme(forwardAuthRequest);
-
-    if (errors) throw new HttpValidationError(errors);
     const decoded: JwtToken | string = verify(jwt, process.env.JWT_SIGNATURE || '');
 
     //https://tools.ietf.org/html/rfc6750
