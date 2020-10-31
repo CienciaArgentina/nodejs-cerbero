@@ -1,17 +1,16 @@
 import { verify } from 'jsonwebtoken';
-import { CienciaError, HTTPCienciaError, HttpCienciaError } from 'ciencia-argentina-backend-commons';
+import { CienciaError, HTTPCienciaError } from 'ciencia-argentina-backend-commons';
 import { Roles, ForwardAuth, JwtToken } from './models';
 import dotenv from 'dotenv';
 import { validateForwardAuthScheme } from './utils/validators/post';
-import { error } from 'winston';
 import { HttpStatusErrorCode } from 'ciencia-argentina-backend-commons/dist/commons/constants';
 dotenv.config();
 
-const includeClaims = (roles: Roles[], required_claim: string): boolean => {
+export const includeClaims = (roles: Roles[], required_claim: string): boolean => {
   return !!roles.find((r) => r.claims.find((c) => c.description.toLowerCase() === required_claim.toLowerCase()));
 };
 
-const validateTokenData = (token: string | JwtToken, required_claim: string): CienciaError[] => {
+export const validateTokenData = (token: string | JwtToken, required_claim: string): CienciaError[] => {
   const errors: CienciaError[] = [];
 
   if (!token || typeof token === 'string' || !token.expires_at || !token.roles || typeof token.roles !== 'object')
@@ -32,14 +31,18 @@ const validateTokenData = (token: string | JwtToken, required_claim: string): Ci
   return errors;
 };
 
-export const verifyToken = (forwardAuthRequest: ForwardAuth): void => {
+export const verifyJWT = (jwt: string): JwtToken | string => {
+  return verify(jwt, process.env.JWT_SIGNATURE || '');
+};
+
+export const validateToken = (forwardAuthRequest: ForwardAuth): void => {
   const validationError = validateForwardAuthScheme(forwardAuthRequest);
 
   if (validationError) throw validationError;
 
   const { jwt, required_claim } = forwardAuthRequest;
 
-  const token: JwtToken | string = verify(jwt, process.env.JWT_SIGNATURE || '');
+  const token: JwtToken | string = verifyJWT(jwt);
 
   const errors = validateTokenData(token, required_claim);
   if (errors.length) throw new HTTPCienciaError(HttpStatusErrorCode.Unauthorized, 'invalid_token', errors);

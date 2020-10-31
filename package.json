@@ -5,8 +5,7 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "test:dev": "jest --collectCoverage",
-    "test": "jest",
+    "test": "jest --collectCoverage",
     "debug": "node --debug-brk --inspect ./node_modules/.bin/jest -i",
     "start": "node ./dist/server.js",
     "lint": "eslint --fix --ext .ts ."
