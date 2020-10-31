@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@types/json-schema": "^7.0.6",
-    "ciencia-argentina-backend-commons": "^1.4.82",
+    "ciencia-argentina-backend-commons": "^1.4.88",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
