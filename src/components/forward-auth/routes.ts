@@ -9,7 +9,7 @@ export default [
     method: 'post',
     handler: [
       async ({ body }: Request, res: Response): Promise<void> => {
-        validateToken(body);
+        await validateToken(body);
         res.status(HttpStatusCode.Ok).send();
       },
     ],
