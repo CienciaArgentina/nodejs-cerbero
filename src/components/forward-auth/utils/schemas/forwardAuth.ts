@@ -10,6 +10,6 @@ export const forwardAuth: JSONSchema7 = {
       type: ['string'],
     },
   },
-  required: ['jwt', 'required_claim'],
+  required: ['jwt'],
   additionalProperties: false,
 };

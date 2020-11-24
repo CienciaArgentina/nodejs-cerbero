@@ -5,5 +5,5 @@ export interface JwtToken {
   username?: string;
   email?: string;
   expires_at?: number;
-  roles?: Roles[];
+  roles?: string;
 }

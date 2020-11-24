@@ -11,3 +11,10 @@ export enum ErrorDescription {
   BadRequest = 'BadRequest',
   InternalServerError = 'Internal Server Error',
 }
+
+export const signatureOrPayloadInvalid = [
+  {
+    code: 'signature_or_jwt_invalid',
+    detail: 'signature or payload invalid',
+  },
+];
